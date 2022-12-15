@@ -59,7 +59,7 @@ function move(){
                         document.getElementById('escoz').innerHTML = `Time left: ${minutes}:${seconds}`;
 
                         var shortCutFunction = 'success';
-                        var msg = `1 Minutes Left, <hr class="to-hr"> Complete the payment before time runs out.`;
+                        var msg = `1 Minute Left, <hr class="to-hr"> Complete the payment before time runs out.`;
                         toastr.options = {closeButton: true, debug: false, newestOnTop: true, progressBar: true, positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null};
                         var $toast = toastr[shortCutFunction](msg);
                         $toastlast = $toast;
@@ -464,7 +464,7 @@ function move(){
                         document.getElementById('escoz').innerHTML = `Time left: ${minutes}:${seconds}`;
 
                         var shortCutFunction = 'success';
-                        var msg = `1 Minutes Left, <hr class="to-hr"> Complete the payment before time runs out.`;
+                        var msg = `1 Minute Left, <hr class="to-hr"> Complete the payment before time runs out.`;
                         toastr.options = {closeButton: true, debug: false, newestOnTop: true, progressBar: true, positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null};
                         var $toast = toastr[shortCutFunction](msg);
                         $toastlast = $toast;
