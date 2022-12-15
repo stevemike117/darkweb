@@ -378,49 +378,6 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 col-md-7 col-12 center-col" id="anon-div">
-                <div class="modal-content" id="modalsend">
-                    <div class="brock">
-                        
-                        <div class="modal-body" id="invoice-body">
-                            <div id="invoice-body-div">
-                                <div id="anon-invoice">
-                                    <div class="text-center section-heading">
-
-                                        <p>
-                                            Would you like to get bank log details sent via <span>email</span>,
-                                            or via <span>sms</span> as a dynamic link that expires after 7 hours?
-                                        </p>
-                                        
-                                        <div style="display: inline-block" class="link-email-div" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                            <div class="invoice">
-                                                <img src="img/partners/gmail.png">
-                                                <a class="butn home-btn">
-                                                    Get Email Invoice
-                                                </a>
-                                            </div>
-                                            <blink>Vouched</blink>
-                                        </div>        
-                
-                                        <br>
-                
-                                        <div style="display: inline-block" class="link-phone-div" data-bs-toggle="modal" data-bs-target="#phoneModal">
-                                            <div class="invoice">
-                                                <img src="img/partners/phone.png">
-                                                <a class="butn phone-btn">
-                                                    Get Phone Invoice
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>    
-                    </div>
-                </div>
-            </div>
-
 
         </div>
     </div>
@@ -479,112 +436,6 @@
 <a class="scroll-to-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
-
-<div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="section-heading">
-                    <h4 class="set">
-                        EMAIL INVOICE
-                    </h4>
-                </div>
-                <button type="button" class="btn-cloze" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-p" id="ver-email">
-                    A link will be sent to the email you enter below 👇🏼👇🏼.
-                    <br>
-                    Use the link to sign in on <span>darkweb</span>.
-                </p>
-                <hr class="thehr">
-                <form id="the-form">
-                    <div class="form-group col-md-12">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter Your Email..." required>
-                    </div>
-                    <hr class="thehr">
-                    <li class="next">
-                        <button type="submit" class="butn modal-btn" id="signUp">
-                            Verify Email
-                            <img src="img/partners/emails.png">
-                        </button>
-                    </li>
-                </form>
-            </div>
-        </div>
-    </div>   
-</div>
-
-<div class="modal fade"  id="phoneModal" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="section-heading">
-                    <h4 class="set">
-                        PHONE INVOICE
-                    </h4>
-                </div>
-                <button type="button" class="btn-cloze" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-p">
-                    A code will be sent to the number you enter below 👇🏼 👇🏼.
-                    <br>
-                    Use the code to sign in on <span>darkweb</span>.
-                </p>
-                <hr class="thehr">
-                <form id="myform">
-                    <div class="form-group col-md-12">
-                        <div id="the-div">
-                            <img id="the-flag" />
-                            <input type="tel" id="phoneNumber" class="form-control" placeholder="Enter Phone Number..." name="phone" pattern="[+]{1}[0-9]{11,14}" required />
-                        </div>
-                        <div id="recaptcha-container"></div>
-                    </div>
-                    <hr class="thehr">
-                    <li class="next" id="next-btn">
-                        <button type="submit" class="butn modal-btn" id="getCode">
-                            Verify Number
-                            <img src="img/partners/phone.png">
-                        </button>
-                    </li>
-                </form>
-            </div>
-        </div>
-    </div>   
-</div>
-
-<div class="modal fade" id="verifyModal" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="section-heading">
-                    <h4 class="set">
-                        VERIFY CODE
-                    </h4>
-                </div>
-                <button type="button" class="btn-cloze" data-bs-toggle="modal" data-bs-target="#phoneModal"></button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-p">
-                    Check your phone messages, and enter the <span>code</span> received.
-                </p>
-                <hr class="thehr">
-                <div class="form-group col-md-12">
-                    <input type="text" required maxlength="7" class="form-control" id="code" placeholder="Enter Verification Code...">
-                </div>
-                <hr class="thehr">
-                <li class="next" id="next-btn">
-                    <button type="submit" class="butn modal-btn" id="signInWithPhone">
-                        Verify Code
-                        <img src="img/partners/check.png">
-                    </button>
-                </li>
-            </div>
-        </div>
-    </div>   
-</div>
 
 <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
@@ -646,15 +497,9 @@
                 </div>
             </div>    
 
-            <div class="modal-footer modal-checkout" style="display: none;" id="modal-email">
+            <div class="modal-footer modal-checkout">
                 <a class="butn" href="invoice" id="thetot1">
                     Checkout: $0
-                </a>
-            </div>
-
-            <div class="modal-footer modal-checkout" style="display: none;" id="modal-anon">
-                <a class="butn" id="thetot1" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    Email Invoice <img src="img/partners/emails.png">
                 </a>
             </div>
 

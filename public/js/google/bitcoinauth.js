@@ -83,9 +83,7 @@ auth.onAuthStateChanged(user => {
 			<br>
 			The bank log files will be sent as a link to your phone number. 
 		`;
-	} else if(user.isAnonymous) {
-		window.location.assign('confirm');
-	}
+	} 
 });
 
 

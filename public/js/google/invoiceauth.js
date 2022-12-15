@@ -137,9 +137,7 @@ auth.onAuthStateChanged(user => {
 				Web Browser: <span>${platform.name}</span>.
 			`;
 		}
-	} else if(user.isAnonymous) {
-		window.location.assign('confirm');
-	}
+	} 
 
 
 	if(user.uid){

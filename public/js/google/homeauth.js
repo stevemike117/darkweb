@@ -161,45 +161,7 @@ auth.onAuthStateChanged(user => {
 		}
 		vpnImg.src = 'img/partners/phone.png';
 		vpn.innerHTML = `View Profile <img src="img/partners/phone.png">`;
-	}  else if (user.isAnonymous && user.displayName) {
-		jinaHolder.value = user.displayName;
-		jinaHolder3.value = user.displayName;
-		jinaHolder4.value = user.displayName;
-		jinaHolder2.innerText = 'User ID: ' + user.uid;
-		nameHolder1.value = user.displayName;
-		nameHolder2.value = user.displayName;
-		nameHolder3.value = user.displayName;
-
-		email5.innerHTML = `Logged in anonymously, you can link a valid email address on the confirm page to get an email invoice`;
-
-		if (localStorage.getItem('banklogs') && ((JSON.parse(localStorage.getItem('banklogs')).length) > 0)) {
-			goodies = JSON.parse(localStorage.getItem('banklogs'));
-			for (var i = 0; i < goodies.length; i++) {
-				document.getElementById(`name-on-table${items.indexOf(items[i])}`).innerHTML = user.displayName;
-			}
-		}
-		vpnImg.src = 'img/partners/anonymous.png';
-		vpn.innerHTML = `View Profile <img src="img/partners/anonymous.png">`;
-	} else 	if (user.isAnonymous && !user.displayName) {
-		jinaHolder.value = 'Anonymous';
-		jinaHolder3.value = 'Anonymous';
-		jinaHolder4.value = 'Anonymous';
-		jinaHolder2.innerText = 'User ID: ' + user.uid;
-		nameHolder1.value = 'ANONYMOUS';
-		nameHolder2.value = 'ANONYMOUS';
-		nameHolder3.value = 'ANONYMOUS';
-
-		email5.innerHTML = `Logged in anonymously, you can link a valid email address on the confirm page to get an email invoice`;
-
-		if (localStorage.getItem('banklogs') && ((JSON.parse(localStorage.getItem('banklogs')).length) > 0)) {
-			goodies = JSON.parse(localStorage.getItem('banklogs'));
-			for (var i = 0; i < goodies.length; i++) {
-				document.getElementById(`name-on-table${items.indexOf(items[i])}`).innerHTML = 'Anonymous';
-			}
-		}
-		vpnImg.src = 'img/partners/anonymous.png';
-		vpn.innerHTML = `View Profile <img src="img/partners/anonymous.png">`;
-	} 
+	}  
 
 	if(user.uid){
 		theId.innerHTML = user.uid;

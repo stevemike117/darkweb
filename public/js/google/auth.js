@@ -80,18 +80,6 @@ auth.onAuthStateChanged(user => {
 		jinaHolder3.readOnly = true;
 		vpnImg.src = 'img/partners/phone.png';
 		vpn.innerHTML = `View Profile <img src="img/partners/phone.png">`;
-	} else if(user.isAnonymous && user.displayName) {
-		jinaHolder.value = user.displayName;
-		jinaHolder3.value = user.displayName;
-		jinaHolder2.innerText = 'User ID: ' + user.uid;
-		vpnImg.src = 'img/partners/anonymous.png';
-		vpn.innerHTML = `View Profile <img src="img/partners/anonymous.png">`;
-	} else if(user.isAnonymous && !user.displayName) {
-		jinaHolder.value = 'Anonymous';
-		jinaHolder3.value = 'Anonymous';
-		jinaHolder2.innerText = 'User ID: ' + user.uid;
-		vpnImg.src = 'img/partners/anonymous.png';
-		vpn.innerHTML = `View Profile <img src="img/partners/anonymous.png">`;
 	} 
 
 	if(user.uid){

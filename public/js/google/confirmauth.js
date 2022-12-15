@@ -19,18 +19,9 @@ const yourPhone = document.getElementById('yourPhone');
 
 const emailInvoice = document.getElementById('email-div');
 const phoneInvoice = document.getElementById('phone-div');
-const anonInvoice = document.getElementById('anon-div');
-
-const mailField = document.getElementById('inputEmail');
-const signUp = document.getElementById('signUp');
 
 const emailImg = document.getElementById('email-img');
 const emailVerify = document.getElementById('email-verify');
-
-const phoneNumberField = document.getElementById('phoneNumber');
-const codeField = document.getElementById('code');
-const signInWithPhoneButton = document.getElementById('signInWithPhone');
-const getCodeButton = document.getElementById('getCode');
 
 const verP = document.getElementById('ver-p');
 const auth = firebase.auth();
@@ -60,8 +51,6 @@ auth.onAuthStateChanged(user => {
 			emailImg.src = 'img/partners/google.png';
 		}
 		emailVerify.addEventListener('click', sendEmail);
-
-		document.getElementById('modal-email').style.display = 'flex';
 	} else if (!user.displayName && user.email) {
 		var themail = user.email;
 		var theaddress = themail.substring(0, themail.indexOf('@'));
@@ -81,36 +70,19 @@ auth.onAuthStateChanged(user => {
 				window.location.reload();
 			});
 		}
-		document.getElementById('modal-email').style.display = 'flex';
 	} else if(user.phoneNumber && user.displayName) {
 		jinaHolder.value = user.displayName;
 		jinaHolder.readOnly = true;
 		jinaHolder2.innerText = 'User ID: ' + user.uid;
 		phoneInvoice.style.display = 'flex';
 		yourPhone.innerText = user.phoneNumber;
-
-		document.getElementById('modal-email').style.display = 'flex';
 	} else if(user.phoneNumber && !user.displayName) {
 		jinaHolder.value = user.phoneNumber;
 		jinaHolder.readOnly = true;
 		jinaHolder2.innerText = 'User ID: ' + user.uid;
 		phoneInvoice.style.display = 'flex';
 		yourPhone.innerText = user.phoneNumber;
-
-		document.getElementById('modal-email').style.display = 'flex';
-	} else	if (user.isAnonymous && user.displayName) {
-		jinaHolder.value = user.displayName;
-		jinaHolder2.innerText = 'User ID: ' + user.uid;
-		anonInvoice.style.display = 'flex';
-
-		document.getElementById('modal-anon').style.display = 'flex';
-	} else	if (user.isAnonymous && !user.displayName) {
-		jinaHolder.value = 'Anonymous';
-		jinaHolder2.innerText = 'User ID: ' + user.uid;
-		anonInvoice.style.display = 'flex';
-
-		document.getElementById('modal-anon').style.display = 'flex';
-	}
+	} 
 });
 
 function sendEmail() {
@@ -165,233 +137,6 @@ function sendEmail() {
 	localStorage.setItem('darkweb-verify-cx', true);
 }
 
-const signUpFunction = () => {
-	event.preventDefault();
-	const email = mailField.value;
-	var actionCodeSettings = {
-		url: 'https://www.darkweb.cx/confirm',
-		handleCodeInApp: true,
-	};
-	if(email.includes('@gmail.com') || email.includes('@GMAIL.COM')) {
-		const googleProvider = new firebase.auth.GoogleAuthProvider;
-		const theUser = auth.currentUser;
-		theUser.linkWithPopup(googleProvider).then(() => {
-			theUser.updateProfile({
-				displayName: theUser.providerData[0].displayName, 
-				photoURL: theUser.providerData[0].photoURL
-			}).then(() => {
-				window.location.reload();
-			});
-		}).catch(error => {
-			document.getElementById('ver-email').innerHTML = `
-				${error.message} : <span>${mailField.value}</span> <br>
-				Use a different email address.
-			`;
-			var shortCutFunction = 'success';
-			var msg = `
-				${error.message} : ${mailField.value} <br>
-				<hr class="to-hr">
-				Use a different email address.
-			`;
-			toastr.options = {
-				closeButton: true,
-				debug: false,
-				newestOnTop: true,
-				progressBar: true,
-				positionClass: 'toast-top-full-width',
-				preventDuplicates: true,
-				onclick: null
-			};
-			var $toast = toastr[shortCutFunction](msg);
-			$toastlast = $toast;
-		});
-	} else if(email.includes('@yahoo.com') || email.includes('@YAHOO.COM')) {
-		const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
-		const theUser = auth.currentUser;
-		theUser.linkWithPopup(yahooProvider).then(() => {
-			theUser.updateProfile({
-				displayName: theUser.providerData[0].displayName, 
-				photoURL: theUser.providerData[0].photoURL
-			}).then(() => {
-				window.location.reload();
-			});
-		}).catch(error => {
-			document.getElementById('ver-email').innerHTML = `
-				${error.message} : <span>${mailField.value}</span> <br>
-				Use a different email address.
-			`;
-			var shortCutFunction = 'success';
-			var msg = `
-				${error.message} : ${mailField.value} <br>
-				<hr class="to-hr">
-				Use a different email address.
-			`;
-			toastr.options = {
-				closeButton: true,
-				debug: false,
-				newestOnTop: true,
-				progressBar: true,
-				positionClass: 'toast-top-full-width',
-				preventDuplicates: true,
-				onclick: null
-			};
-			var $toast = toastr[shortCutFunction](msg);
-			$toastlast = $toast;
-		});
-	} else {
-		auth.sendSignInLinkToEmail(email, actionCodeSettings)
-		.then(() => {
-			document.getElementById('ver-email').innerHTML = `
-				Verification link sent to your email <span>${email}</span>.
-				<br> 
-				Check the <span>spam / junk </span> folder.
-			`;
-
-			var shortCutFunction = 'success';
-			var msg = `
-				Verification link sent to your email: ${email}.
-				<hr class="to-hr">
-				Check the spam / junk folder.
-			`;
-			toastr.options = {
-				closeButton: true,
-				debug: false,
-				newestOnTop: true,
-				progressBar: true,
-				positionClass: 'toast-top-full-width',
-				preventDuplicates: true,
-				onclick: null
-			};
-			var $toast = toastr[shortCutFunction](msg);
-			$toastlast = $toast;
-
-			window.localStorage.setItem('emailForSignIn', email);
-		}).catch(error => {
-			var shortCutFunction = 'success';
-			var msg = `${error.message}`;
-			toastr.options = {
-				closeButton: true,
-				debug: false,
-				newestOnTop: true,
-				progressBar: true,
-				positionClass: 'toast-top-full-width',
-				preventDuplicates: true,
-				onclick: null
-			};
-			var $toast = toastr[shortCutFunction](msg);
-			$toastlast = $toast;
-		});
-	}
-}
-signUp.addEventListener('click', signUpFunction);
-document.getElementById('the-form').addEventListener('submit', signUpFunction);
-
-
-if (auth.isSignInWithEmailLink(window.location.href)) {
-	var email = window.localStorage.getItem('emailForSignIn');
-	if (!email) {
-		localStorage.setItem('the-email', true)
-		email = window.prompt('Enter your email for confirmation');
-	}
-	auth.signInWithEmailLink(email, window.location.href)
-		.then((result) => {
-			if (localStorage.getItem('the-email')) {
-				auth.currentUser.sendEmailVerification();
-				window.location.reload();
-			} else {
-				auth.currentUser.sendEmailVerification();
-				window.close();
-			}
-		})
-		.catch((error) => {
-			var shortCutFunction = 'success';
-			var msg = `${error.message}`;
-			toastr.options = {
-				closeButton: true,
-				debug: false,
-				newestOnTop: true,
-				progressBar: true,
-				positionClass: 'toast-top-full-width',
-				preventDuplicates: true,
-				onclick: null
-			};
-			var $toast = toastr[shortCutFunction](msg);
-			$toastlast = $toast;
-		});
-}
-
-window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-recaptchaVerifier.render().then(widgetId => {
-	window.recaptchaWidgetId = widgetId;
-})
-const sendVerificationCode = () => {
-	const phoneNumber = phoneNumberField.value;
-	const appVerifier = window.recaptchaVerifier;
-
-	auth.signInWithPhoneNumber(phoneNumber, appVerifier)
-		.then(confirmationResult => {
-			const sentCodeId = confirmationResult.verificationId;
-			signInWithPhoneButton.addEventListener('click', () => signInWithPhone(sentCodeId));
-		})
-		.catch(error => {
-			var shortCutFunction = 'success';
-			var msg = `${error.message}`;
-			toastr.options = {
-				closeButton: true,
-				debug: false,
-				newestOnTop: true,
-				progressBar: true,
-				positionClass: 'toast-top-full-width',
-				preventDuplicates: true,
-				onclick: null
-			};
-			var $toast = toastr[shortCutFunction](msg);
-			$toastlast = $toast;
-		})
-}
-const signInWithPhone = sentCodeId => {
-	const code = codeField.value;
-	const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
-	auth.signInWithCredential(credential)
-		.then(() => {
-			window.location.reload();
-		})
-		.catch(error => {
-			var shortCutFunction = 'success';
-			var msg = `${error.message}`;
-			toastr.options = {
-				closeButton: true,
-				debug: false,
-				newestOnTop: true,
-				progressBar: true,
-				positionClass: 'toast-top-full-width',
-				preventDuplicates: true,
-				onclick: null
-			};
-			var $toast = toastr[shortCutFunction](msg);
-			$toastlast = $toast;
-		})
-}
-getCodeButton.addEventListener('click', sendVerificationCode);
-
-fetch('https://ipapi.co/json/')
-	.then(function(response) {
-		return response.json();
-	})
-	.then(function(data) {
-
-		var countyCode = data.country_code;
-		var newCode = countyCode.toLowerCase();
-
-		document.getElementById('the-flag').src = `https://flagcdn.com/144x108/${newCode}.png`;
-		document.getElementById('phoneNumber').value = data.country_calling_code;
-	});
-
-$('#myform').on('submit', function(ev) {
-	$('#verifyModal').modal('show');
-	$('#phoneModal').modal('hide');
-	ev.preventDefault();
-});
 
 jinaHolder.addEventListener("change", () => {
 	auth.currentUser.updateProfile({

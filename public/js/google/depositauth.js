@@ -55,9 +55,7 @@ auth.onAuthStateChanged(user => {
 		jinaHolder2.innerText = 'User ID: ' + user.uid;
 		tableName.innerHTML = user.phoneNumber;
 		tableId.innerHTML = user.uid;
-	} else if(user.isAnonymous) {
-		window.location.assign('confirm');
-	}
+	} 
 });
 
 
